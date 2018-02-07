@@ -1,0 +1,287 @@
+/* 
+
+    Basic Web Layout
+    Author: The Ministry Of Extraordinary Affairs
+    URL: www.theministry.co
+    Updated: 2 feb 2018
+    License: MIT
+
+*/
+
+html {
+    background-color: black;
+}
+
+body,html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+    Grid
+*/
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.item {
+    display: flex;
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+/* 
+    Layout
+*/
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+video {
+    object-fit: cover;
+    width: 70vw;
+    height: 14vw;
+    max-width: 960px;
+    max-height: 192px;
+    z-index: -100;
+    border-radius: 1%;
+    -webkit-mask-box-image: url('/img/mask.svg') 100 100 0 0 repeat repeat;
+}
+
+video:hover {
+    -webkit-mask-box-image: url('/img/mask-inv.svg') 100 100 0 0 repeat repeat;
+}
+
+.pulsing {
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: pulse;
+  }
+    
+  @keyframes pulse {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.01, 1.01, 1.01) skewY(0.1deg);
+    }
+  
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+main {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 960px;
+    width: 80%;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(calc(100% / 50px), 50px);
+    grid-template-rows: repeat(calc(100% / 50px), 50px);
+}
+
+/* 
+    Form 
+*/
+
+form {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+input {
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding:0.5rem 1rem;
+    background:#000;
+    border: 2px solid rgba(255,255,255,0.8);
+    color: rgba(255,255,255,1);
+    width: 100%;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+input[type="text"]:placeholder,
+input[type="email"]:placeholder,
+textarea:placeholder {
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+}
+
+input[type="submit"] {
+    padding:.5rem 1rem;
+    background:#000;
+    border: 2px solid rgba(255,255,255,0.8);
+    color: rgba(255,255,255,1);
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+input[type="submit"]:hover {
+    padding:.5rem 1rem;
+    background:rgba(255,255,255,0.8);
+    border: 2px solid rgba(255,255,255,0);
+    color: rgba(0,0,0,1);
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* 
+    Flickity 
+*/
+
+.carousel .flickity-viewport{
+    width: 100vw;
+    height: 100vh;
+}
+
+.carousel-cell {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+@keyframes pan {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    to {
+      transform: scale3d(1.1, 1.1, 1.1) skewY(1deg);
+    }
+  }
+
+.carousel-cell.is-selected {
+    animation-duration: 8s;
+    animation-fill-mode: both;
+    animation-name: pan;
+}
+
+.carousel-image {
+    max-width: 100vw;
+    max-height: 100vh;
+    transition: opacity 0.4s;
+    opacity: 0;
+  }
+  
+  .carousel-image.flickity-lazyloaded,
+  .carousel-image.flickity-lazyerror {
+    opacity: 1;
+  }
+
+.static-banner {
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    top: 2rem;
+    color: rgba(255,255,255,0.9);
+    z-index: 10;
+    width: 100vw;
+    text-align: center
+}
+
+.flickity-page-dots {
+    bottom: 2rem;
+}
+
+.flickity-page-dots .dot {
+    background: rgba(255,255,255,0.6);
+  }
+  /* fill-in selected dot */
+  .flickity-page-dots .dot.is-selected {
+    background: rgba(255,255,255,0.8);
+  }
+
+  /* 
+    Modal
+  */
+
+.modal.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal.content, .modal.content iframe {
+    max-width: 100vw;
+}
+
+.modal.close {
+    position: fixed;
+    bottom: 2rem;
+}
+
+.sent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}

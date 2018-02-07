@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/flickity.css">
+    <link rel="stylesheet" href="css/onepage-scroll.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>The Ministry of Extraordinary Affairs</title>
+</head>
+<body>
+    <main>
+    <section id="intro" class="flex container">
+        <div onclick="openModal()" class="video-container">
+            <video playsinline autoplay muted loop id="bgvid" class="pulsing">
+                <source src="vid/sibg.webm" type="video/webm">
+                <source src="vid/sibg.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+    <section id="main" class="flex container">
+        <h1>Sonos Ignitia</h1>
+        <p>Sonos Ignitia stands for ‘the land of sound and fire’. A living landscape of flame that visibly and audibly undulates around you. It takes you on a journey through the heart of a composition of sound, light and heat. The feelings it evokes alternate between meditative and compelling, digital and analogue, technical and poetic, intimate and bombastic.</p>
+        <p>Sound controls the flames, bringing them to life and making them dance. Like a landscape inhabited by a composition of light, sound and heat.</p>
+    </section>
+    <section id="media" class="">
+        <div class="carousel">
+            <div class="static-banner">
+                <h3>Media</h3>
+            </div>
+            <div class="carousel-cell">
+                <img data-flickity-lazyload="img/img1.jpg" alt="" class="carousel-image">
+            </div>
+            <div class="carousel-cell">
+                <img data-flickity-lazyload="img/img2.jpg" alt="" class="carousel-image">
+            </div>
+            <div class="carousel-cell">
+                <img data-flickity-lazyload="img/img3.jpg" alt="" class="carousel-image">
+            </div>
+            <div class="carousel-cell">
+                <img data-flickity-lazyload="img/img4.jpg" alt="" class="carousel-image">
+            </div>
+            <div class="carousel-cell">
+                <img data-flickity-lazyload="img/img5.jpg" alt="" class="carousel-image">
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="flex container">
+        <h3>Contact</h3>
+        <p>Sonos Ignitia is a collaborative project by <a href="http://theministry.co">Nikolai Gillissen</a>, <a href="http://almarontwerpt.nl">Almar Sinte Maartensdijk</a> and <a href="http://studiovanbroekhoven.com">Ricky van Broekhoven</a>.</p>
+        <p>It's conception was made possible by <a href="http://tac.nu">TAC</a> and <a href="http://gloweindhoven.nl">GLOW Eindhoven</a>. For more information and inquiries, please fill out the form below.</p>
+        <form action="https://formspree.io/sonosignitia@theministry.co" method="POST">
+            <input type="text" name="name" id="namefield" placeholder="name"/>
+            <input type="email" name="email" id="emailfield" placeholder="email"/>
+            <textarea name="message" id="messagefield" cols="" rows="5" placeholder="message"></textarea>
+            <input type="hidden" name="_subject" value="Message from Sonos Ignitia website" />
+            <input type="hidden" name="_next" value="/#sent"/>
+            <input type="text" name="_gotcha" style="display:none" />
+            <input type="submit" value="Fire!">
+        </form>
+        <div class="sent" onclick="closeThankYou()" id="sent">
+            <div class="modal content">
+                <p>Thank you. Your email has been sent.</p>
+                <p>Click anywhere to close.</p>
+            </div>
+        </div>
+    </section>
+    </main>
+    <div class="modal overlay" onclick="closeModal()">
+        <div class="modal content" id="video-container">
+            <!-- <iframe src="https://player.vimeo.com/video/254103823?autoplay=0&color=ffffff&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+        </div>
+        <div class="modal close">
+            <span>Click anywhere outside the video to close.</span>
+        </div>
+    </div>
+    <script src="js/flickity.pkgd.min.js"></script>
+    <script src="js/onepagescroll.js"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Welcome! Site by http://theministry.co"); // Hello for curious coders!
+            init();
+        });
+
+        function init() {
+            var hash = window.location.hash;
+            var thanks = document.querySelector(".sent")
+            if (hash === "#sent") {
+                thanks.style.display = "flex";
+            } else {
+                thanks.style.display = "none";
+            }
+
+            var elem = document.querySelector('.carousel');
+            var flkty = new Flickity( elem, {
+                // options
+                wrapAround: "true",
+                cellSelector: ".carousel-cell",
+                setGallerySize: "false",
+                lazyLoad: "true",
+                dragTreshold: 10,
+                friction: 0.5,
+                prevNextButtons: false,
+                autoPlay: 4000,
+                pauseAutoPlayOnHover: false
+            });
+
+            onePageScroll("main", {
+                sectionContainer: "section",     
+                easing: "ease",                  
+                animationTime: 1000,             
+                pagination: false,                
+                updateURL: false,                
+                loop: false,                     
+                keyboard: true,                  
+                responsiveFallback: false
+            });
+        }
+
+        var options = {
+            id: "254103823",
+            maxwidth: 960,
+            byline: "false",
+            color: "ffffff",
+            portrait: "false"
+        };
+
+        var player = new Vimeo.Player('video-container', options);
+        var modal = document.querySelector(".modal.overlay");
+
+        function openModal() {
+            modal.style.display = "flex";
+            player.play();
+
+            var sidedock = document.querySelector(".sidedock");
+            sidedock.classList.remove("sidedock");
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            player.pause();
+        }
+
+        function closeThankYou() {
+            var thanks = document.querySelector(".sent")
+            thanks.style.display = "none";
+        }
+    </script>
+</body>
+</html>
