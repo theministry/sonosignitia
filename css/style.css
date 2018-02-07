@@ -61,11 +61,11 @@ video {
     max-height: 192px;
     z-index: -100;
     border-radius: 1%;
-    -webkit-mask-box-image: url('/img/mask.svg') 100 100 0 0 repeat repeat;
+    -webkit-mask-box-image: url('../img/mask.svg') 100 100 0 0 repeat repeat;
 }
 
 video:hover {
-    -webkit-mask-box-image: url('/img/mask-inv.svg') 100 100 0 0 repeat repeat;
+    -webkit-mask-box-image: url('../img/mask-inv.svg') 100 100 0 0 repeat repeat;
 }
 
 .pulsing {
