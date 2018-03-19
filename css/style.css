@@ -103,19 +103,48 @@ section.flex {
     Video
 */
 
-video {
+.video-container {
+    position: relative;
     object-fit: cover;
     width: 70vw;
     height: 14vw;
     max-width: 960px;
     max-height: 192px;
-    z-index: -100;
     border-radius: 1%;
-    -webkit-mask-box-image: url('../img/mask.svg') 100 100 0 0 repeat repeat;
+}
+
+video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
+    display: block;
+    /*-webkit-mask-box-image: url('../img/mask.svg') 100 100 0 0 repeat repeat;*/
 }
 
 video:hover {
-    -webkit-mask-box-image: url('../img/mask-inv.svg') 100 100 0 0 repeat repeat;
+    /*-webkit-mask-box-image: url('../img/mask-inv.svg') 100 100 0 0 repeat repeat;*/
+}
+
+#vidmask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/mask.svg');
+}
+
+#vidmask:hover {
+    background-image: url('../img/mask-inv.svg');
 }
 
 .pulsing {
